@@ -9,50 +9,32 @@ int Prompt(string message) // Запрашивает на ввод число
     return Convert.ToInt32(Console.ReadLine());
 }
 
-void PrintArray(int[] array)// Возвращает массив
+void PrintNumbers(int index, int length)
 {
-    int length = array.Length;
-    System.Console.Write(array[0]);
-    for (int i = 1; i < length; i++)
-    {
-        System.Console.Write($"; {array[i]}");
-    }
-}
-
-void PrintNumbers(int length, int count, int index)
-{
-    int value = length;
-    if (index == 0) return;
-    PrintNumbers(length, value, index - 1);
+    if (length == 0) return;
     for (int i = 0; i < index; i++)
     {
-        count -= index- i;
-        if (count == 0) return;
         System.Console.Write(index + " ");
-        System.Console.Write($"({count})");
+        length--;
+        if (length == 0) return;
     }
+    PrintNumbers(index + 1, length);
 }
 
-// int[] CreateArray(int length, int count)
+// void PrintNumbers(int length)
 // {
-//     int[] array = new int[length];
-//     if (count == 1)
+//     int count = 0;
+//     for (int i = 1; i <= length; i++)
 //     {
-//         array[0] = count;
-//         return array;
+//         for (int j = 1; j <= i; j++)
+//         {
+//             System.Console.Write(i + " ");
+//             count++;
+//             if (length <= count) return;
+//         }
 //     }
-//     CreateArray(length, count - 1);
-//     for (int i = 0; i < count; i++)
-//     {
-//         if (length/2 == count - 1 + i) return array;
-//         array[count - 1 + i] = count;// 1 2 2 3        1 2 2 3 3 3 4 4
-//     }
-//     return array;
 // }
 
 int length = Prompt("Введите число");
-// int[] numbers = CreateArray(length, length);
-PrintNumbers(length, length, length);
-System.Console.WriteLine();
-// PrintArray(numbers);
+PrintNumbers(1, length);
 
